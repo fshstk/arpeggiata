@@ -39,10 +39,7 @@
       <div class="text-h6">{{ name }}</div>
       <div class="q-gutter-md">
         <q-btn
-          @mousedown="
-            isActive = !isActive;
-            playNote(7);
-          "
+          @mousedown="powerButton()"
           v-bind:class="{ on: isActive, off: !isActive }"
           :ripple="false"
           round
@@ -308,7 +305,8 @@ export default {
     Tone.start();
   },
   methods: {
-    playNote(index) {
+    powerButton(index) {
+      this.isActive = !this.isActive;
       // this.$emit('playNote', freq)
 
       // const arpeggio = new Tone.Pattern(

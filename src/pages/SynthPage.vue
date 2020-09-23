@@ -21,10 +21,7 @@
 
       <div class="row flex flex-center q-gutter-md q-pa-md">
         <q-btn
-          @click="
-            isPlaying = false;
-            playPause();
-          "
+          @click="pause()"
           :ripple="false"
           round
           color="orange"
@@ -32,10 +29,7 @@
           icon="stop"
         />
         <q-btn
-          @click="
-            isPlaying = true;
-            playPause();
-          "
+          @click="play()"
           :ripple="false"
           round
           color="teal"
@@ -69,12 +63,13 @@ export default {
     StartAudioContext(this.Tone.context);
   },
   methods: {
-    playPause() {
-      if (this.isPlaying) {
-        this.Tone.Transport.start();
-      } else {
-        this.Tone.Transport.pause();
-      }
+    play() {
+      this.isPlaying = true;
+      this.Tone.Transport.start();
+    },
+    pause() {
+      this.isPlaying = false;
+      this.Tone.Transport.pause();
     }
   }
 };
