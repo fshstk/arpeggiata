@@ -40,7 +40,7 @@
       <div class="q-gutter-md">
         <q-btn
           @mousedown="powerButton()"
-          v-bind:class="{ on: isActive, off: !isActive }"
+          :class="{ on: isActive, off: !isActive }"
           :ripple="false"
           round
           icon="power_settings_new"
@@ -56,7 +56,7 @@
           <q-btn
             label="1/4"
             @mousedown="notelen = '4n'"
-            v-bind:class="{
+            :class="{
               'note-length-active': notelen === '4n',
               'note-length': notelen !== '4n'
             }"
@@ -68,7 +68,7 @@
           <q-btn
             label="1/8"
             @mousedown="notelen = '8n'"
-            v-bind:class="{
+            :class="{
               'note-length-active': notelen === '8n',
               'note-length': notelen !== '8n'
             }"
@@ -80,7 +80,7 @@
           <q-btn
             label="1/16"
             @mousedown="notelen = '16n'"
-            v-bind:class="{
+            :class="{
               'note-length-active': notelen === '16n',
               'note-length': notelen !== '16n'
             }"
@@ -95,7 +95,7 @@
           <q-btn
             label="1/4T"
             @mousedown="notelen = '4t'"
-            v-bind:class="{
+            :class="{
               'note-length-active': notelen === '4t',
               'note-length': notelen !== '4t'
             }"
@@ -107,7 +107,7 @@
           <q-btn
             label="1/8T"
             @mousedown="notelen = '8t'"
-            v-bind:class="{
+            :class="{
               'note-length-active': notelen === '8t',
               'note-length': notelen !== '8t'
             }"
@@ -119,7 +119,7 @@
           <q-btn
             label="1/16T"
             @mousedown="notelen = '16t'"
-            v-bind:class="{
+            :class="{
               'note-length-active': notelen === '16t',
               'note-length': notelen !== '16t'
             }"
@@ -134,7 +134,7 @@
           <q-btn
             label="scale 1"
             @mousedown="scale = 1"
-            v-bind:class="{
+            :class="{
               'sequence-active': scale === 1,
               sequence: scale !== 1
             }"
@@ -146,7 +146,7 @@
           <q-btn
             label="scale 2"
             @mousedown="scale = 2"
-            v-bind:class="{
+            :class="{
               'sequence-active': scale === 2,
               sequence: scale !== 2
             }"
@@ -158,7 +158,7 @@
           <q-btn
             label="scale 3"
             @mousedown="scale = 3"
-            v-bind:class="{
+            :class="{
               'sequence-active': scale === 3,
               sequence: scale !== 3
             }"
@@ -173,7 +173,7 @@
           <q-btn
             label="seq 1"
             @mousedown="sequence = 1"
-            v-bind:class="{
+            :class="{
               'sequence-active': sequence === 1,
               sequence: sequence !== 1
             }"
@@ -185,7 +185,7 @@
           <q-btn
             label="seq 2"
             @mousedown="sequence = 2"
-            v-bind:class="{
+            :class="{
               'sequence-active': sequence === 2,
               sequence: sequence !== 2
             }"
@@ -197,7 +197,7 @@
           <q-btn
             label="seq 3"
             @mousedown="sequence = 3"
-            v-bind:class="{
+            :class="{
               'sequence-active': sequence === 3,
               sequence: sequence !== 3
             }"
@@ -212,7 +212,7 @@
           <q-btn
             icon="add"
             @mousedown="octave = 1"
-            v-bind:class="{
+            :class="{
               'octave-active': octave === 1,
               octave: octave !== 1
             }"
@@ -222,7 +222,7 @@
           <q-btn
             icon="exposure_zero"
             @mousedown="octave = 0"
-            v-bind:class="{
+            :class="{
               'octave-active': octave === 0,
               octave: octave !== 0
             }"
@@ -232,7 +232,7 @@
           <q-btn
             icon="remove"
             @mousedown="octave = -1"
-            v-bind:class="{
+            :class="{
               'octave-active': octave === -1,
               octave: octave !== -1
             }"
