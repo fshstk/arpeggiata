@@ -69,11 +69,9 @@ export default {
   components: {
     EssentialLink
   },
-  data() {
-    return {
-      leftDrawerOpen: false,
-      essentialLinks: linksData
-    };
-  }
+  data: () => ({
+    leftDrawerOpen: false,
+    essentialLinks: linksData
+  })
 };
 </script>
