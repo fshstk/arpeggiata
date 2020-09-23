@@ -249,7 +249,7 @@
               <q-slider
                 v-model="synth.volume.value"
                 :min="-30"
-                :max="0"
+                :max="-6"
                 color="teal"
               />
             </q-item-section>
@@ -277,6 +277,7 @@ export default {
     synth: new Tone.MonoSynth().toDestination()
   }),
   created() {
+    this.synth.volume.value = -12;
     this.synth.envelope.sustain = 0;
     this.synth.filterEnvelope.octaves = 0;
 
