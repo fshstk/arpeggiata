@@ -133,10 +133,10 @@
         <div class="col-3">
           <q-btn
             label="scale 1"
-            @mousedown="scale = 1"
+            @mousedown="scaleIndex = 0"
             :class="{
-              'sequence-active': scale === 1,
-              sequence: scale !== 1
+              'sequence-active': scaleIndex === 0,
+              sequence: scaleIndex !== 0
             }"
             class="third-button"
             :ripple="false"
@@ -145,10 +145,10 @@
           />
           <q-btn
             label="scale 2"
-            @mousedown="scale = 2"
+            @mousedown="scaleIndex = 1"
             :class="{
-              'sequence-active': scale === 2,
-              sequence: scale !== 2
+              'sequence-active': scaleIndex === 1,
+              sequence: scaleIndex !== 1
             }"
             class="third-button"
             :ripple="false"
@@ -157,10 +157,10 @@
           />
           <q-btn
             label="scale 3"
-            @mousedown="scale = 3"
+            @mousedown="scaleIndex = 2"
             :class="{
-              'sequence-active': scale === 3,
-              sequence: scale !== 3
+              'sequence-active': scaleIndex === 2,
+              sequence: scaleIndex !== 2
             }"
             class="third-button"
             :ripple="false"
@@ -172,10 +172,10 @@
         <div class="col-3">
           <q-btn
             label="seq 1"
-            @mousedown="sequence = 1"
+            @mousedown="sequenceIndex = 0"
             :class="{
-              'sequence-active': sequence === 1,
-              sequence: sequence !== 1
+              'sequence-active': sequenceIndex === 0,
+              sequence: sequenceIndex !== 0
             }"
             class="third-button"
             :ripple="false"
@@ -184,10 +184,10 @@
           />
           <q-btn
             label="seq 2"
-            @mousedown="sequence = 2"
+            @mousedown="sequenceIndex = 1"
             :class="{
-              'sequence-active': sequence === 2,
-              sequence: sequence !== 2
+              'sequence-active': sequenceIndex === 1,
+              sequence: sequenceIndex !== 1
             }"
             class="third-button"
             :ripple="false"
@@ -196,10 +196,10 @@
           />
           <q-btn
             label="seq 3"
-            @mousedown="sequence = 3"
+            @mousedown="sequenceIndex = 2"
             :class="{
-              'sequence-active': sequence === 3,
-              sequence: sequence !== 3
+              'sequence-active': sequenceIndex === 2,
+              sequence: sequenceIndex !== 2
             }"
             class="third-button"
             :ripple="false"
@@ -269,18 +269,29 @@ export default {
   data: () => ({
     isActive: false,
 
-    scale: 1,
-    sequence: 1,
+    scaleIndex: 0,
+    sequenceIndex: 0,
     octave: 0,
 
     synth: new Tone.MonoSynth().toDestination(),
     arpeggio: null, // initialized in created()
-    sequenceNotes: ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"]
+
+    scales: [
+      ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"],
+      ["C4", "C4", "C5", "C5", "B4", "G4", "A4", "G4"],
+      ["F4", "A4", "B4", "B4", "F4", "A4", "B4", "B4"]
+    ],
+    sequences: [
+      [1, 3, 2, 5, 3, 2],
+      [1, 3, 2, 5, 3, 2],
+      [1, 3, 2, 5, 3, 2]
+    ]
   }),
   created() {
     this.arpeggio = new Tone.Pattern(
       (time, note) => this.synth.triggerAttack(note * 2 ** this.octave, time),
-      this.sequenceNotes.map(note => Tone.Frequency(note)),
+      // TODO: dynamic scale index
+      this.scales[this.scaleIndex].map(note => Tone.Frequency(note)),
       "up"
     );
 
