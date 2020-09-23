@@ -1,6 +1,6 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
+  <q-layout view="hhh lpr fff">
+    <q-header bordered class="bg-teal text-white">
       <q-toolbar>
         <q-btn
           flat
@@ -11,11 +11,11 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
-          Quasar App
+        <q-toolbar-title class="text-center">
+          Arpeggiata
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <img width="50px" src="~assets/iemlogo.png" />
       </q-toolbar>
     </q-header>
 
@@ -40,6 +40,15 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer bordered class="q-pa-xs bg-grey-7 text-center">
+      <a
+        style="text-decoration: none;"
+        class="text-white"
+        href="https://www.github.com/fshstk"
+        >© 2016 Fabian Hummel</a
+      >
+    </q-footer>
   </q-layout>
 </template>
 
