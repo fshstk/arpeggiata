@@ -280,13 +280,12 @@ export default {
     this.synth.envelope.sustain = 0;
     this.synth.filterEnvelope.octaves = 0;
 
-    const freq = 440;
-    const loop = new Tone.Loop(
-      time => this.synth.triggerAttack(freq, time),
-      this.notelen
+    const arpeggio = new Tone.Pattern(
+      (time, note) => this.synth.triggerAttack(note, time),
+      ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"],
+      "up"
     );
-    loop.start(Tone.now());
-
+    arpeggio.start(0);
   },
   methods: {
     powerButton(index) {
