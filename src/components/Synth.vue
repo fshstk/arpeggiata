@@ -55,10 +55,10 @@
         <div class="col-2">
           <q-btn
             label="1/4"
-            @mousedown="notelen = '4n'"
+            @mousedown="arpeggio.interval = 1 / 4"
             :class="{
-              'note-length-active': notelen === '4n',
-              'note-length': notelen !== '4n'
+              'note-length-active': arpeggio.interval === 1 / 4,
+              'note-length': arpeggio.interval !== 1 / 4
             }"
             :ripple="false"
             class="third-button"
@@ -67,10 +67,10 @@
           />
           <q-btn
             label="1/8"
-            @mousedown="notelen = '8n'"
+            @mousedown="arpeggio.interval = 1 / 8"
             :class="{
-              'note-length-active': notelen === '8n',
-              'note-length': notelen !== '8n'
+              'note-length-active': arpeggio.interval === 1 / 8,
+              'note-length': arpeggio.interval !== 1 / 8
             }"
             :ripple="false"
             class="third-button"
@@ -79,10 +79,10 @@
           />
           <q-btn
             label="1/16"
-            @mousedown="notelen = '16n'"
+            @mousedown="arpeggio.interval = 1 / 16"
             :class="{
-              'note-length-active': notelen === '16n',
-              'note-length': notelen !== '16n'
+              'note-length-active': arpeggio.interval === 1 / 16,
+              'note-length': arpeggio.interval !== 1 / 16
             }"
             :ripple="false"
             class="third-button"
@@ -94,10 +94,10 @@
         <div class="col-2">
           <q-btn
             label="1/4T"
-            @mousedown="notelen = '4t'"
+            @mousedown="arpeggio.interval = 1 / 3"
             :class="{
-              'note-length-active': notelen === '4t',
-              'note-length': notelen !== '4t'
+              'note-length-active': arpeggio.interval === 1 / 3,
+              'note-length': arpeggio.interval !== 1 / 3
             }"
             :ripple="false"
             class="third-button"
@@ -106,10 +106,10 @@
           />
           <q-btn
             label="1/8T"
-            @mousedown="notelen = '8t'"
+            @mousedown="arpeggio.interval = 1 / 6"
             :class="{
-              'note-length-active': notelen === '8t',
-              'note-length': notelen !== '8t'
+              'note-length-active': arpeggio.interval === 1 / 6,
+              'note-length': arpeggio.interval !== 1 / 6
             }"
             :ripple="false"
             class="third-button"
@@ -118,10 +118,10 @@
           />
           <q-btn
             label="1/16T"
-            @mousedown="notelen = '16t'"
+            @mousedown="arpeggio.interval = 1 / 12"
             :class="{
-              'note-length-active': notelen === '16t',
-              'note-length': notelen !== '16t'
+              'note-length-active': arpeggio.interval === 1 / 12,
+              'note-length': arpeggio.interval !== 1 / 12
             }"
             :ripple="false"
             class="third-button"
@@ -271,33 +271,33 @@ export default {
 
     scale: 1,
     sequence: 1,
-    notelen: "8n",
     octave: 0,
 
-    synth: new Tone.MonoSynth().toDestination()
+    synth: new Tone.MonoSynth().toDestination(),
+    arpeggio: null, // initialized in created()
+    sequenceNotes: ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"]
   }),
   created() {
+    this.arpeggio = new Tone.Pattern(
+      (time, note) => this.synth.triggerAttack(note * 2 ** this.octave, time),
+      this.sequenceNotes.map(note => Tone.Frequency(note)),
+      "up"
+    );
+
     this.synth.volume.value = -12;
     this.synth.envelope.sustain = 0;
     this.synth.filterEnvelope.octaves = 0;
 
-    const arpeggio = new Tone.Pattern(
-      (time, note) => this.synth.triggerAttack(note, time),
-      ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"],
-      "up"
-    );
-    arpeggio.start(0);
+    this.arpeggio.interval = 1 / 4;
   },
   methods: {
     powerButton(index) {
       this.isActive = !this.isActive;
 
       if (this.isActive) {
-        Tone.Transport.start();
-        // loop.start(Tone.now())
+        this.arpeggio.start(0);
       } else {
-        Tone.Transport.pause();
-        // loop.pause()
+        this.arpeggio.stop();
       }
     }
   }
