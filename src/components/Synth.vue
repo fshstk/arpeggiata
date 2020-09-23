@@ -262,14 +262,10 @@
 
 <script>
 import * as Tone from "tone";
-// import * as StartAudioContext from 'startaudiocontext'
 
 export default {
   name: "Synth",
-  props: [
-    "name",
-    "Tone" // tone.js instance
-  ],
+  props: ["name"],
   data: () => ({
     isActive: false,
 
@@ -279,19 +275,8 @@ export default {
     octave: 0,
 
     synth: new Tone.MonoSynth().toDestination()
-    // synth: null
   }),
   created() {
-    // this.synth = new Tone.MonoSynth().toDestination()
-
-    console.log(this.Tone);
-    console.log(this.synth);
-
-    // The audio context must be started from a user interaction.
-    // The following function call takes care of this by starting the audio
-    // context with the first user interaction inside the document body.
-    // StartAudioContext(Tone.context)
-
     this.synth.envelope.sustain = 0;
     this.synth.filterEnvelope.octaves = 0;
 
@@ -302,23 +287,11 @@ export default {
     );
     loop.start(Tone.now());
 
-    Tone.start();
   },
   methods: {
     powerButton(index) {
       this.isActive = !this.isActive;
-      // this.$emit('playNote', freq)
 
-      // const arpeggio = new Tone.Pattern(
-      //   (time, note) => {},
-      //   ['C2', 'D4', 'E5', 'A6'],
-      //   'upDown'
-      // )
-
-      // arpeggio.start(Tone.now())
-      // Tone.start()
-
-      // Tone.Transport.start()
       if (this.isActive) {
         Tone.Transport.start();
         // loop.start(Tone.now())

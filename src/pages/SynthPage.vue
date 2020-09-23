@@ -3,19 +3,19 @@
     <div class="q-pa-md items-center">
       <div class="row">
         <div class="col-12 col-md q-pa-xs flex flex-center">
-          <Synth name="synth 1" :Tone="Tone" />
+          <Synth name="synth 1" />
         </div>
         <div class="col-12 col-md q-pa-xs flex flex-center">
-          <Synth name="synth 2" :Tone="Tone" />
+          <Synth name="synth 2" />
         </div>
       </div>
 
       <div class="row">
         <div class="col-12 col-md q-pa-xs flex flex-center">
-          <Synth name="synth 3" :Tone="Tone" />
+          <Synth name="synth 3" />
         </div>
         <div class="col-12 col-md q-pa-xs flex flex-center">
-          <Synth name="synth 4" :Tone="Tone" />
+          <Synth name="synth 4" />
         </div>
       </div>
 
