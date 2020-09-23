@@ -21,7 +21,7 @@
 
       <div class="row flex flex-center q-gutter-md q-pa-md">
         <q-btn
-          @click="pause()"
+          @click="stop()"
           :ripple="false"
           round
           color="orange"
@@ -29,12 +29,12 @@
           icon="stop"
         />
         <q-btn
-          @click="play()"
+          @click="togglePlayPause()"
           :ripple="false"
           round
           color="teal"
           size="30px"
-          icon="play_arrow"
+          :icon="isPlaying ? 'pause' : 'play_arrow'"
         />
       </div>
     </div>
@@ -70,6 +70,17 @@ export default {
     pause() {
       this.isPlaying = false;
       this.Tone.Transport.pause();
+    },
+    togglePlayPause() {
+      if (this.isPlaying) this.pause();
+      else this.play();
+    },
+    stop() {
+      this.isPlaying = false;
+      this.Tone.Transport.stop();
+
+      // TODO: resetting transport to 0 works, but loop continues anyway...
+      this.Tone.Transport.seconds = 0;
     }
   }
 };
