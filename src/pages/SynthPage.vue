@@ -72,8 +72,7 @@ export default {
       this.Tone.Transport.pause();
     },
     togglePlayPause() {
-      if (this.isPlaying) this.pause();
-      else this.play();
+      this.isPlaying ? this.pause() : this.play();
     },
     stop() {
       this.isPlaying = false;

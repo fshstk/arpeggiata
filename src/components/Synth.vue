@@ -40,7 +40,7 @@
       <div class="q-gutter-md">
         <q-btn
           @mousedown="powerButton()"
-          :class="{ on: isActive, off: !isActive }"
+          :class="isActive ? 'on' : 'off'"
           :ripple="false"
           round
           icon="power_settings_new"
@@ -56,10 +56,9 @@
           <q-btn
             label="1/4"
             @mousedown="arpeggio.interval = 1 / 4"
-            :class="{
-              'note-length-active': arpeggio.interval === 1 / 4,
-              'note-length': arpeggio.interval !== 1 / 4,
-            }"
+            :class="
+              arpeggio.interval === 1 / 4 ? 'note-length-active' : 'note-length'
+            "
             :ripple="false"
             class="third-button"
             icon="music_note"
@@ -68,10 +67,9 @@
           <q-btn
             label="1/8"
             @mousedown="arpeggio.interval = 1 / 8"
-            :class="{
-              'note-length-active': arpeggio.interval === 1 / 8,
-              'note-length': arpeggio.interval !== 1 / 8,
-            }"
+            :class="
+              arpeggio.interval === 1 / 8 ? 'note-length-active' : 'note-length'
+            "
             :ripple="false"
             class="third-button"
             icon="music_note"
@@ -80,10 +78,11 @@
           <q-btn
             label="1/16"
             @mousedown="arpeggio.interval = 1 / 16"
-            :class="{
-              'note-length-active': arpeggio.interval === 1 / 16,
-              'note-length': arpeggio.interval !== 1 / 16,
-            }"
+            :class="
+              arpeggio.interval === 1 / 16
+                ? 'note-length-active'
+                : 'note-length'
+            "
             :ripple="false"
             class="third-button"
             icon="music_note"
@@ -95,10 +94,9 @@
           <q-btn
             label="1/4T"
             @mousedown="arpeggio.interval = 1 / 3"
-            :class="{
-              'note-length-active': arpeggio.interval === 1 / 3,
-              'note-length': arpeggio.interval !== 1 / 3,
-            }"
+            :class="
+              arpeggio.interval === 1 / 3 ? 'note-length-active' : 'note-length'
+            "
             :ripple="false"
             class="third-button"
             icon="music_note"
@@ -107,10 +105,9 @@
           <q-btn
             label="1/8T"
             @mousedown="arpeggio.interval = 1 / 6"
-            :class="{
-              'note-length-active': arpeggio.interval === 1 / 6,
-              'note-length': arpeggio.interval !== 1 / 6,
-            }"
+            :class="
+              arpeggio.interval === 1 / 6 ? 'note-length-active' : 'note-length'
+            "
             :ripple="false"
             class="third-button"
             icon="music_note"
@@ -119,10 +116,11 @@
           <q-btn
             label="1/16T"
             @mousedown="arpeggio.interval = 1 / 12"
-            :class="{
-              'note-length-active': arpeggio.interval === 1 / 12,
-              'note-length': arpeggio.interval !== 1 / 12,
-            }"
+            :class="
+              arpeggio.interval === 1 / 12
+                ? 'note-length-active'
+                : 'note-length'
+            "
             :ripple="false"
             class="third-button"
             icon="music_note"
@@ -134,10 +132,7 @@
           <q-btn
             label="scale 1"
             @mousedown="scaleIndex = 0"
-            :class="{
-              'sequence-active': scaleIndex === 0,
-              sequence: scaleIndex !== 0,
-            }"
+            :class="scaleIndex === 0 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
             icon="stairs"
@@ -146,10 +141,7 @@
           <q-btn
             label="scale 2"
             @mousedown="scaleIndex = 1"
-            :class="{
-              'sequence-active': scaleIndex === 1,
-              sequence: scaleIndex !== 1,
-            }"
+            :class="scaleIndex === 1 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
             icon="stairs"
@@ -158,10 +150,7 @@
           <q-btn
             label="scale 3"
             @mousedown="scaleIndex = 2"
-            :class="{
-              'sequence-active': scaleIndex === 2,
-              sequence: scaleIndex !== 2,
-            }"
+            :class="scaleIndex === 2 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
             icon="stairs"
@@ -173,10 +162,7 @@
           <q-btn
             label="seq 1"
             @mousedown="sequenceIndex = 0"
-            :class="{
-              'sequence-active': sequenceIndex === 0,
-              sequence: sequenceIndex !== 0,
-            }"
+            :class="sequenceIndex === 0 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
             icon="loop"
@@ -185,10 +171,7 @@
           <q-btn
             label="seq 2"
             @mousedown="sequenceIndex = 1"
-            :class="{
-              'sequence-active': sequenceIndex === 1,
-              sequence: sequenceIndex !== 1,
-            }"
+            :class="sequenceIndex === 1 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
             icon="loop"
@@ -197,10 +180,7 @@
           <q-btn
             label="seq 3"
             @mousedown="sequenceIndex = 2"
-            :class="{
-              'sequence-active': sequenceIndex === 2,
-              sequence: sequenceIndex !== 2,
-            }"
+            :class="sequenceIndex === 2 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
             icon="loop"
@@ -212,30 +192,21 @@
           <q-btn
             icon="add"
             @mousedown="octave = 1"
-            :class="{
-              'octave-active': octave === 1,
-              octave: octave !== 1,
-            }"
+            :class="octave === 1 ? 'octave-active' : 'octave'"
             class="third-button"
             :ripple="false"
           />
           <q-btn
             icon="exposure_zero"
             @mousedown="octave = 0"
-            :class="{
-              'octave-active': octave === 0,
-              octave: octave !== 0,
-            }"
+            :class="octave === 0 ? 'octave-active' : 'octave'"
             class="third-button"
             :ripple="false"
           />
           <q-btn
             icon="remove"
             @mousedown="octave = -1"
-            :class="{
-              'octave-active': octave === -1,
-              octave: octave !== -1,
-            }"
+            :class="octave === -1 ? 'octave-active' : 'octave'"
             class="third-button"
             :ripple="false"
           />
@@ -304,14 +275,9 @@ export default {
   methods: {
     powerButton(index) {
       this.isActive = !this.isActive;
-
-      if (this.isActive) {
-        this.arpeggio.start(0);
-      } else {
-        this.arpeggio.stop();
-      }
-    }
-  }
+      this.isActive ? this.arpeggio.start(0) : this.arpeggio.stop();
+    },
+  },
 };
 </script>
 
