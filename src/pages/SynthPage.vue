@@ -49,12 +49,12 @@ import * as StartAudioContext from "startaudiocontext";
 export default {
   name: "SynthPage",
   components: {
-    Synth
+    Synth,
   },
   data: () => ({
     Tone: Tone,
-    isPlaying: false,
-    bpm: 120
+    isPlaying: false, // TODO: replace with Tone.Transport.state
+    bpm: 120,
   }),
   created() {
     // The audio context must be started from a user interaction.
@@ -81,8 +81,8 @@ export default {
 
       // TODO: resetting transport to 0 works, but loop continues anyway...
       this.Tone.Transport.seconds = 0;
-    }
-  }
+    },
+  },
 };
 </script>
 

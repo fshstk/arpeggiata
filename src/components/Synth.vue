@@ -58,7 +58,7 @@
             @mousedown="arpeggio.interval = 1 / 4"
             :class="{
               'note-length-active': arpeggio.interval === 1 / 4,
-              'note-length': arpeggio.interval !== 1 / 4
+              'note-length': arpeggio.interval !== 1 / 4,
             }"
             :ripple="false"
             class="third-button"
@@ -70,7 +70,7 @@
             @mousedown="arpeggio.interval = 1 / 8"
             :class="{
               'note-length-active': arpeggio.interval === 1 / 8,
-              'note-length': arpeggio.interval !== 1 / 8
+              'note-length': arpeggio.interval !== 1 / 8,
             }"
             :ripple="false"
             class="third-button"
@@ -82,7 +82,7 @@
             @mousedown="arpeggio.interval = 1 / 16"
             :class="{
               'note-length-active': arpeggio.interval === 1 / 16,
-              'note-length': arpeggio.interval !== 1 / 16
+              'note-length': arpeggio.interval !== 1 / 16,
             }"
             :ripple="false"
             class="third-button"
@@ -97,7 +97,7 @@
             @mousedown="arpeggio.interval = 1 / 3"
             :class="{
               'note-length-active': arpeggio.interval === 1 / 3,
-              'note-length': arpeggio.interval !== 1 / 3
+              'note-length': arpeggio.interval !== 1 / 3,
             }"
             :ripple="false"
             class="third-button"
@@ -109,7 +109,7 @@
             @mousedown="arpeggio.interval = 1 / 6"
             :class="{
               'note-length-active': arpeggio.interval === 1 / 6,
-              'note-length': arpeggio.interval !== 1 / 6
+              'note-length': arpeggio.interval !== 1 / 6,
             }"
             :ripple="false"
             class="third-button"
@@ -121,7 +121,7 @@
             @mousedown="arpeggio.interval = 1 / 12"
             :class="{
               'note-length-active': arpeggio.interval === 1 / 12,
-              'note-length': arpeggio.interval !== 1 / 12
+              'note-length': arpeggio.interval !== 1 / 12,
             }"
             :ripple="false"
             class="third-button"
@@ -136,7 +136,7 @@
             @mousedown="scaleIndex = 0"
             :class="{
               'sequence-active': scaleIndex === 0,
-              sequence: scaleIndex !== 0
+              sequence: scaleIndex !== 0,
             }"
             class="third-button"
             :ripple="false"
@@ -148,7 +148,7 @@
             @mousedown="scaleIndex = 1"
             :class="{
               'sequence-active': scaleIndex === 1,
-              sequence: scaleIndex !== 1
+              sequence: scaleIndex !== 1,
             }"
             class="third-button"
             :ripple="false"
@@ -160,7 +160,7 @@
             @mousedown="scaleIndex = 2"
             :class="{
               'sequence-active': scaleIndex === 2,
-              sequence: scaleIndex !== 2
+              sequence: scaleIndex !== 2,
             }"
             class="third-button"
             :ripple="false"
@@ -175,7 +175,7 @@
             @mousedown="sequenceIndex = 0"
             :class="{
               'sequence-active': sequenceIndex === 0,
-              sequence: sequenceIndex !== 0
+              sequence: sequenceIndex !== 0,
             }"
             class="third-button"
             :ripple="false"
@@ -187,7 +187,7 @@
             @mousedown="sequenceIndex = 1"
             :class="{
               'sequence-active': sequenceIndex === 1,
-              sequence: sequenceIndex !== 1
+              sequence: sequenceIndex !== 1,
             }"
             class="third-button"
             :ripple="false"
@@ -199,7 +199,7 @@
             @mousedown="sequenceIndex = 2"
             :class="{
               'sequence-active': sequenceIndex === 2,
-              sequence: sequenceIndex !== 2
+              sequence: sequenceIndex !== 2,
             }"
             class="third-button"
             :ripple="false"
@@ -214,7 +214,7 @@
             @mousedown="octave = 1"
             :class="{
               'octave-active': octave === 1,
-              octave: octave !== 1
+              octave: octave !== 1,
             }"
             class="third-button"
             :ripple="false"
@@ -224,7 +224,7 @@
             @mousedown="octave = 0"
             :class="{
               'octave-active': octave === 0,
-              octave: octave !== 0
+              octave: octave !== 0,
             }"
             class="third-button"
             :ripple="false"
@@ -234,7 +234,7 @@
             @mousedown="octave = -1"
             :class="{
               'octave-active': octave === -1,
-              octave: octave !== -1
+              octave: octave !== -1,
             }"
             class="third-button"
             :ripple="false"
@@ -279,13 +279,13 @@ export default {
     scales: [
       ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"],
       ["C4", "C4", "C5", "C5", "B4", "G4", "A4", "G4"],
-      ["F4", "A4", "B4", "B4", "F4", "A4", "B4", "B4"]
+      ["F4", "A4", "B4", "B4", "F4", "A4", "B4", "B4"],
     ],
     sequences: [
       [1, 3, 2, 5, 3, 2],
       [1, 3, 2, 5, 3, 2],
-      [1, 3, 2, 5, 3, 2]
-    ]
+      [1, 3, 2, 5, 3, 2],
+    ],
   }),
   created() {
     this.arpeggio = new Tone.Pattern(

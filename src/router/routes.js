@@ -9,14 +9,14 @@ const routes = [
       // }
       {
         path: "",
-        component: () => import("pages/SynthPage.vue")
-      }
-    ]
+        component: () => import("pages/SynthPage.vue"),
+      },
+    ],
   },
   {
     path: "*",
-    component: () => import("pages/Error404.vue")
-  }
+    component: () => import("pages/Error404.vue"),
+  },
 ];
 
 export default routes;
