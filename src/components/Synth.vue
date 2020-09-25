@@ -131,7 +131,7 @@
         <div class="col-3">
           <q-btn
             label="scale 1"
-            @mousedown="scaleIndex = 0"
+            @mousedown="changeScale(0)"
             :class="scaleIndex === 0 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
@@ -140,7 +140,7 @@
           />
           <q-btn
             label="scale 2"
-            @mousedown="scaleIndex = 1"
+            @mousedown="changeScale(1)"
             :class="scaleIndex === 1 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
@@ -149,7 +149,7 @@
           />
           <q-btn
             label="scale 3"
-            @mousedown="scaleIndex = 2"
+            @mousedown="changeScale(2)"
             :class="scaleIndex === 2 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
@@ -161,7 +161,7 @@
         <div class="col-3">
           <q-btn
             label="seq 1"
-            @mousedown="sequenceIndex = 0"
+            @mousedown="changeSequence(0)"
             :class="sequenceIndex === 0 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
@@ -170,7 +170,7 @@
           />
           <q-btn
             label="seq 2"
-            @mousedown="sequenceIndex = 1"
+            @mousedown="changeSequence(1)"
             :class="sequenceIndex === 1 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
@@ -179,7 +179,7 @@
           />
           <q-btn
             label="seq 3"
-            @mousedown="sequenceIndex = 2"
+            @mousedown="changeSequence(2)"
             :class="sequenceIndex === 2 ? 'sequence-active' : 'sequence'"
             class="third-button"
             :ripple="false"
@@ -261,8 +261,7 @@ export default {
   created() {
     this.arpeggio = new Tone.Pattern(
       (time, note) => this.synth.triggerAttack(note * 2 ** this.octave, time),
-      // TODO: dynamic scale index
-      this.scales[this.scaleIndex].map(note => Tone.Frequency(note)),
+      [], // empty array for now, we will set this using updateScaleSequence()
       "up"
     );
 
@@ -271,6 +270,7 @@ export default {
     this.synth.filterEnvelope.octaves = 0;
 
     this.arpeggio.interval = 1 / 4;
+    this.updateScaleSequence();
     this.arpeggio.mute = true;
     this.arpeggio.start(0);
   },
@@ -278,6 +278,26 @@ export default {
     powerButton(index) {
       this.isActive = !this.isActive;
       this.arpeggio.mute = !this.isActive;
+    },
+    changeScale(index = 0) {
+      this.scaleIndex = index;
+      this.updateScaleSequence();
+    },
+    changeSequence(index = 0) {
+      this.sequenceIndex = index;
+      this.updateScaleSequence();
+    },
+    updateScaleSequence() {
+      // (1) Convert all notes to Tone.Frequency() type, so we can do stuff like
+      // multiply/divide by 2 to change octave:
+      const scale = this.scales[this.scaleIndex].map(note =>
+        Tone.Frequency(note)
+      );
+      // (2) Map the sequence to its scale, i.e. we want to play the notes in
+      // the selected scale, in the order specified by the selected sequence.
+      // The scale is indexed starting at 1 and wraps around the end of the scale.
+      const sequence = this.sequences[this.sequenceIndex];
+      this.arpeggio.values = sequence.map(i => scale[(i - 1) % scale.length]);
     },
   },
 };
