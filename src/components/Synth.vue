@@ -268,6 +268,7 @@ export default {
     this.synth.volume.value = -12;
     this.synth.envelope.sustain = 0;
     this.synth.filterEnvelope.octaves = 0;
+    this.synth.filterEnvelope.baseFrequency = 2000;
 
     this.arpeggio.interval = 1 / 4;
     this.updateScaleSequence();
