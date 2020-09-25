@@ -130,7 +130,7 @@
 
         <div class="col-3">
           <q-btn
-            label="scale 1"
+            :label="$q.screen.gt.xs ? 'scale 1' : void 0"
             @mousedown="changeScale(0)"
             :class="scaleIndex === 0 ? 'sequence-active' : 'sequence'"
             class="third-button"
@@ -139,7 +139,7 @@
             stack
           />
           <q-btn
-            label="scale 2"
+            :label="$q.screen.gt.xs ? 'scale 2' : void 0"
             @mousedown="changeScale(1)"
             :class="scaleIndex === 1 ? 'sequence-active' : 'sequence'"
             class="third-button"
@@ -148,7 +148,7 @@
             stack
           />
           <q-btn
-            label="scale 3"
+            :label="$q.screen.gt.xs ? 'scale 3' : void 0"
             @mousedown="changeScale(2)"
             :class="scaleIndex === 2 ? 'sequence-active' : 'sequence'"
             class="third-button"
@@ -160,7 +160,7 @@
 
         <div class="col-3">
           <q-btn
-            label="seq 1"
+            :label="$q.screen.gt.xs ? 'seq 1' : void 0"
             @mousedown="changeSequence(0)"
             :class="sequenceIndex === 0 ? 'sequence-active' : 'sequence'"
             class="third-button"
@@ -169,7 +169,7 @@
             stack
           />
           <q-btn
-            label="seq 2"
+            :label="$q.screen.gt.xs ? 'seq 2' : void 0"
             @mousedown="changeSequence(1)"
             :class="sequenceIndex === 1 ? 'sequence-active' : 'sequence'"
             class="third-button"
@@ -178,7 +178,7 @@
             stack
           />
           <q-btn
-            label="seq 3"
+            :label="$q.screen.gt.xs ? 'seq 3' : void 0"
             @mousedown="changeSequence(2)"
             :class="sequenceIndex === 2 ? 'sequence-active' : 'sequence'"
             class="third-button"
@@ -232,6 +232,10 @@
 </template>
 
 <script>
+// Importing QVueGlobals is not functionally necessary -- the app compiles and
+// runs just fine without it -- but Vetur shows "$q" as an error without it.
+import QVueGlobals from "quasar";
+
 import * as Tone from "tone";
 
 export default {
