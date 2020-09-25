@@ -271,11 +271,13 @@ export default {
     this.synth.filterEnvelope.octaves = 0;
 
     this.arpeggio.interval = 1 / 4;
+    this.arpeggio.mute = true;
+    this.arpeggio.start(0);
   },
   methods: {
     powerButton(index) {
       this.isActive = !this.isActive;
-      this.isActive ? this.arpeggio.start(0) : this.arpeggio.stop();
+      this.arpeggio.mute = !this.isActive;
     },
   },
 };
