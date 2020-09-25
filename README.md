@@ -24,32 +24,32 @@ changeable tempo.
 
 ### Scales and Sequences
 
-Arpeggiata's defining feature is its ability to independently define scales and
+Arpeggiata's defining feature is its ability to independently specify scales and
 sequences: while a scale is a list of notes and/or frequencies, a sequence
-defines the order in which the notes of a scale are triggered.
+denotes the order in which the notes of a scale are triggered:
 
 ```javascript
 let majorScale = ["C4", "D4", "E4", "F4", "G4", 440.0, "B4", "C5"];
-let sequence = [1, 3, 5, 3];
+let sequence = [1, 3, 5, 3]; // C4, E4, G4, E4
 ```
 
 Here, the C major scale is paired with a sequence that would result in an
 up/down arpeggio of a C major chord. Note that both note/octave string notation
-and integers/floating point numbers can be used to define a scale's note.
+and integers/floats can be used to define a scale.
 
 If we were to change the scale, for example to C minor, the same sequence would
 result in a C minor chord.
 
 ```javascript
 let minorScale = ["C4", "D4", "Eb4", "F4", "G4", 440.0, "B4", "C5"];
+let sequence = [1, 3, 5, 3]; // C4, Eb4, G4, E4
 ```
 
 If a sequence element exceeds the scale's array size, it gets wrapped back to
 the start of the scale. Note also that scale indices begin at one, not at zero:
 
 ```javascript
-majorScale[1]; // C4
-majorScale[10]; // D4
+let sequence = [1, 10]; // C4, D4
 ```
 
 ## Installing
