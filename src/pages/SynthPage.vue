@@ -53,7 +53,7 @@ export default {
   },
   data: () => ({
     Tone: Tone,
-    isPlaying: false, // TODO: replace with Tone.Transport.state
+    isPlaying: false,
     bpm: 120,
   }),
   created() {
@@ -78,7 +78,6 @@ export default {
       this.isPlaying = false;
       this.Tone.Transport.stop();
 
-      // TODO: resetting transport to 0 works, but loop continues anyway...
       this.Tone.Transport.seconds = 0;
     },
   },
