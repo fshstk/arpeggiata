@@ -52,7 +52,6 @@ export default {
     Synth,
   },
   data: () => ({
-    Tone: Tone,
     isPlaying: false,
     bpm: 120,
   }),
@@ -60,25 +59,25 @@ export default {
     // The audio context must be started from a user interaction.
     // The following function call takes care of this by starting the audio
     // context with the first user interaction inside the document body.
-    StartAudioContext(this.Tone.context);
+    StartAudioContext(Tone.context);
   },
   methods: {
     play() {
       this.isPlaying = true;
-      this.Tone.Transport.start();
+      Tone.Transport.start();
     },
     pause() {
       this.isPlaying = false;
-      this.Tone.Transport.pause();
+      Tone.Transport.pause();
     },
     togglePlayPause() {
       this.isPlaying ? this.pause() : this.play();
     },
     stop() {
       this.isPlaying = false;
-      this.Tone.Transport.stop();
+      Tone.Transport.stop();
 
-      this.Tone.Transport.seconds = 0;
+      Tone.Transport.seconds = 0;
     },
   },
 };
