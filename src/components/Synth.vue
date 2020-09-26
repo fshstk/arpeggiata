@@ -331,7 +331,7 @@ export default {
     this.arpeggio.start(0);
   },
   methods: {
-    powerButton(index) {
+    powerButton() {
       this.isActive = !this.isActive;
       this.arpeggio.mute = !this.isActive;
     },
