@@ -2,7 +2,13 @@
   <q-layout view="hhh lpr fff">
     <q-header bordered class="bg-teal text-white">
       <q-toolbar>
-        <q-btn :ripple="false" round icon="settings" class="settings" />
+        <q-btn
+          :ripple="false"
+          round
+          icon="settings"
+          class="settings"
+          @click="settingsActive = true"
+        />
         <q-icon name="speed" class="q-pl-sm" /> {{ bpm.value }} BPM
 
         <!-- TODO: title is not centered -->
@@ -16,6 +22,8 @@
 
     <q-page-container>
       <router-view />
+      <q-dialog v-model="settingsActive">
+      </q-dialog>
     </q-page-container>
 
     <q-footer bordered class="q-pa-xs bg-grey-7 text-center">
@@ -39,6 +47,7 @@ export default {
   },
   data: () => ({
     bpm: Tone.Transport.bpm,
+    settingsActive: false,
   }),
 };
 </script>
