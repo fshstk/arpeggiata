@@ -9,7 +9,8 @@
           class="settings"
           @click="settingsActive = true"
         />
-        <q-icon name="speed" class="q-pl-sm" /> {{ bpm.value }} BPM
+        <q-icon name="speed" class="q-pl-sm" />
+        {{ Math.round(bpm.value) }} BPM
 
         <!-- TODO: title is not centered -->
         <q-toolbar-title class="text-center">
