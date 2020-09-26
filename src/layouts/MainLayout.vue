@@ -3,6 +3,7 @@
     <q-header bordered class="bg-teal text-white">
       <q-toolbar>
         <q-btn :ripple="false" round icon="settings" class="settings" />
+        <q-icon name="speed" class="q-pl-sm" /> {{ bpm.value }} BPM
 
         <!-- TODO: title is not centered -->
         <q-toolbar-title class="text-center">
@@ -29,13 +30,15 @@
 </template>
 
 <script>
+import * as Tone from "tone";
+
 export default {
   name: "MainLayout",
   components: {
     //
   },
   data: () => ({
-    //
+    bpm: Tone.Transport.bpm,
   }),
 };
 </script>
