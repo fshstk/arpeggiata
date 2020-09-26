@@ -4,6 +4,7 @@
       <q-toolbar>
         <q-btn :ripple="false" round icon="settings" class="settings" />
 
+        <!-- TODO: title is not centered -->
         <q-toolbar-title class="text-center">
           Arpeggiata
         </q-toolbar-title>
