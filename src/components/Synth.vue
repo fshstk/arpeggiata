@@ -1,8 +1,12 @@
 <template>
-  <q-flashcard no-hover>
-    <div style="height: 325px; width: 500px; margin: 0; padding: 0;">
-      <q-flashcard-section transition="slide-up-out" :active="settingsOpen">
-        <q-card class="synth-panel-front" dark flat bordered>
+  <q-card class="synth-panel" flat>
+    <q-flashcard style="width: 500px;" no-hover>
+      <div class="synth-panel">
+        <q-flashcard-section
+          class="synth-panel-front"
+          transition="slide-up-out"
+          :active="settingsOpen"
+        >
           <q-card-section class="flex justify-between">
             <div class="q-gutter-md">
               <q-knob
@@ -251,23 +255,30 @@
               </q-list>
             </div>
           </q-card-section>
-        </q-card>
-      </q-flashcard-section>
+        </q-flashcard-section>
 
-      <q-flashcard-section transition="slide-up-in" :active="settingsOpen">
-        <q-card class="synth-panel-back" flat bordered>
-          <q-btn
-            @click="settingsOpen = false"
-            :ripple="false"
-            round
-            icon="close"
-            class="close-settings"
-            size="sm"
-          />
-        </q-card>
-      </q-flashcard-section>
-    </div>
-  </q-flashcard>
+        <q-flashcard-section
+          class="synth-panel-back"
+          transition="slide-up-in"
+          :active="settingsOpen"
+        >
+          <q-card-section class="flex justify-between">
+            <div class="text-h6">{{ name }} settings page</div>
+            <div class="q-gutter-md">
+              <q-btn
+                @click="settingsOpen = false"
+                :ripple="false"
+                round
+                icon="close"
+                class="close-settings"
+                size="sm"
+              />
+            </div>
+          </q-card-section>
+        </q-flashcard-section>
+      </div>
+    </q-flashcard>
+  </q-card>
 </template>
 
 <script>
@@ -359,10 +370,17 @@ $seq-color-inactive: change-color($seq-color, $alpha: 0.3);
 $note-color-inactive: change-color($note-color, $alpha: 0.3);
 $octave-color-inactive: change-color($octave-color, $alpha: 0.3);
 
+.synth-panel {
+  width: 100%;
+  max-width: 500px;
+  height: 325px;
+}
+
 .synth-panel-front {
   width: 100%;
   max-width: 500px;
   height: 325px;
+  color: $grey-3;
   background-color: $grey-9;
 }
 
@@ -371,6 +389,7 @@ $octave-color-inactive: change-color($octave-color, $alpha: 0.3);
   min-width: 500px;
   max-width: 500px;
   height: 325px;
+  color: $grey-9;
   background-color: $grey-3;
 }
 
