@@ -374,6 +374,7 @@ $octave-color-inactive: change-color($octave-color, $alpha: 0.3);
   width: 100%;
   max-width: 500px;
   height: 325px;
+  background-color: transparent;
 }
 
 .synth-panel-front {
