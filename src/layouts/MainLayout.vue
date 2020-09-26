@@ -2,6 +2,7 @@
   <q-layout view="hhh lpr fff">
     <q-header bordered class="bg-teal text-white">
       <q-toolbar>
+        <q-btn :ripple="false" round icon="settings" class="settings" />
 
         <q-toolbar-title class="text-center">
           Arpeggiata
@@ -37,3 +38,10 @@ export default {
   }),
 };
 </script>
+
+<style lang="scss" scoped>
+.settings {
+  color: $grey-9;
+  background-color: $grey-1;
+}
+</style>

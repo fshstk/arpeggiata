@@ -224,6 +224,15 @@
                 color="teal"
               />
             </q-item-section>
+            <q-item-section side>
+              <q-btn
+                :ripple="false"
+                round
+                icon="settings"
+                class="settings"
+                size="sm"
+              />
+            </q-item-section>
           </q-item>
         </q-list>
       </div>
@@ -380,5 +389,10 @@ $octave-color-inactive: change-color($octave-color, $alpha: 0.3);
 .off {
   color: $grey-9;
   background-color: $teal;
+}
+
+.settings {
+  color: $grey-9;
+  background-color: $grey-1;
 }
 </style>
