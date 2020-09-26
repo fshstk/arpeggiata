@@ -22,7 +22,9 @@
 
     <q-page-container>
       <router-view />
+
       <q-dialog v-model="settingsActive">
+        <settings />
       </q-dialog>
     </q-page-container>
 
@@ -39,11 +41,12 @@
 
 <script>
 import * as Tone from "tone";
+import Settings from "../components/Settings";
 
 export default {
   name: "MainLayout",
   components: {
-    //
+    Settings,
   },
   data: () => ({
     bpm: Tone.Transport.bpm,
