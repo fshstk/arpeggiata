@@ -62,9 +62,9 @@
               <div class="col-2">
                 <q-btn
                   label="1/4"
-                  @mousedown="arpeggio.interval = 1 / 4"
+                  @mousedown="arpeggio.interval = getInterval(1 / 4)"
                   :class="
-                    arpeggio.interval === 1 / 4
+                    arpeggio.interval === getInterval(1 / 4)
                       ? 'note-length-active'
                       : 'note-length'
                   "
@@ -75,9 +75,9 @@
                 />
                 <q-btn
                   label="1/8"
-                  @mousedown="arpeggio.interval = 1 / 8"
+                  @mousedown="arpeggio.interval = getInterval(1 / 8)"
                   :class="
-                    arpeggio.interval === 1 / 8
+                    arpeggio.interval === getInterval(1 / 8)
                       ? 'note-length-active'
                       : 'note-length'
                   "
@@ -88,9 +88,9 @@
                 />
                 <q-btn
                   label="1/16"
-                  @mousedown="arpeggio.interval = 1 / 16"
+                  @mousedown="arpeggio.interval = getInterval(1 / 16)"
                   :class="
-                    arpeggio.interval === 1 / 16
+                    arpeggio.interval === getInterval(1 / 16)
                       ? 'note-length-active'
                       : 'note-length'
                   "
@@ -104,9 +104,9 @@
               <div class="col-2">
                 <q-btn
                   label="1/4T"
-                  @mousedown="arpeggio.interval = 1 / 3"
+                  @mousedown="arpeggio.interval = getInterval(1 / 3)"
                   :class="
-                    arpeggio.interval === 1 / 3
+                    arpeggio.interval === getInterval(1 / 3)
                       ? 'note-length-active'
                       : 'note-length'
                   "
@@ -117,9 +117,9 @@
                 />
                 <q-btn
                   label="1/8T"
-                  @mousedown="arpeggio.interval = 1 / 6"
+                  @mousedown="arpeggio.interval = getInterval(1 / 6)"
                   :class="
-                    arpeggio.interval === 1 / 6
+                    arpeggio.interval === getInterval(1 / 6)
                       ? 'note-length-active'
                       : 'note-length'
                   "
@@ -130,9 +130,9 @@
                 />
                 <q-btn
                   label="1/16T"
-                  @mousedown="arpeggio.interval = 1 / 12"
+                  @mousedown="arpeggio.interval = getInterval(1 / 12)"
                   :class="
-                    arpeggio.interval === 1 / 12
+                    arpeggio.interval === getInterval(1 / 12)
                       ? 'note-length-active'
                       : 'note-length'
                   "
@@ -354,6 +354,15 @@ export default {
       // The scale is indexed starting at 1 and wraps around the end of the scale.
       const sequence = this.sequences[this.sequenceIndex];
       this.arpeggio.values = sequence.map(i => scale[(i - 1) % scale.length]);
+    },
+    getInterval(noteVal) {
+      // Given a certain BPM, we want the period taken up by a note event with
+      // note value noteVal, where noteVal is the fraction of a bar taken up by
+      // a note event (e.g. quarter note = 1/4, etc.)
+      const bpm = Tone.Transport.bpm.value;
+      const quarterNoteDuration = 60 / bpm;
+      const barDuration = 4 * quarterNoteDuration;
+      return noteVal * barDuration;
     },
   },
 };
