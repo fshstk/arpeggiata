@@ -302,6 +302,9 @@ export default {
 
     synth: new Tone.MonoSynth().toDestination(),
     arpeggio: null, // initialized in created()
+
+    scales: SynthData.scales,
+    sequences: SynthData.sequences,
   }),
   created() {
     this.arpeggio = new Tone.Pattern(
@@ -336,11 +339,11 @@ export default {
     updateScaleSequence() {
       // (1) Convert all notes to Tone.Frequency() type, so we can do stuff like
       // multiply/divide by 2 to change octave:
-      const scale = SynthData.scales[this.scaleIndex].split(",").map(note => Tone.Frequency(note));
+      const scale = this.scales[this.scaleIndex].split(",").map(note => Tone.Frequency(note));
       // (2) Map the sequence to its scale, i.e. we want to play the notes in
       // the selected scale, in the order specified by the selected sequence.
       // The scale is indexed starting at 1 and wraps around the end of the scale.
-      const sequence = SynthData.sequences[this.sequenceIndex];
+      const sequence = this.sequences[this.sequenceIndex];
       this.arpeggio.values = sequence.split(",").map(i => scale[(i - 1) % scale.length]);
     },
     getInterval(noteVal) {
@@ -353,6 +356,11 @@ export default {
       return noteVal * barDuration;
     },
   },
+  watch: {
+    scales: function(val) {
+      this.updateScaleSequence();
+    },
+  }
 };
 </script>
 
