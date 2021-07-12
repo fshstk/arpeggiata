@@ -23,7 +23,7 @@
     <q-separator />
 
     <q-card-actions align="right">
-      <q-btn v-close-popup flat color="teal" label="Speichern" />
+      <q-btn v-close-popup flat color="teal" label="Schließen" />
     </q-card-actions>
   </q-card>
 </template>
