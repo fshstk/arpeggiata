@@ -287,6 +287,7 @@
 import QVueGlobals from "quasar";
 
 import * as Tone from "tone";
+import { default as settings } from "./Settings.vue";
 
 export default {
   name: "Synth",
@@ -301,17 +302,6 @@ export default {
 
     synth: new Tone.MonoSynth().toDestination(),
     arpeggio: null, // initialized in created()
-
-    scales: [
-      ["D4", "E4", "F4", "G4", "E4", "E4", "C4", "D4"],
-      ["C4", "C4", "C5", "C5", "B4", "G4", "A4", "G4"],
-      ["F4", "A4", "B4", "B4", "F4", "A4", "B4", "B4"],
-    ],
-    sequences: [
-      [1, 3, 2, 5, 3, 2],
-      [1, 3, 2, 5, 3, 2],
-      [1, 3, 2, 5, 3, 2],
-    ],
   }),
   created() {
     this.arpeggio = new Tone.Pattern(
@@ -346,13 +336,13 @@ export default {
     updateScaleSequence() {
       // (1) Convert all notes to Tone.Frequency() type, so we can do stuff like
       // multiply/divide by 2 to change octave:
-      const scale = this.scales[this.scaleIndex].map(note =>
-        Tone.Frequency(note)
-      );
+      const scale = settings
+        .data()
+        .scales[this.scaleIndex].map(note => Tone.Frequency(note));
       // (2) Map the sequence to its scale, i.e. we want to play the notes in
       // the selected scale, in the order specified by the selected sequence.
       // The scale is indexed starting at 1 and wraps around the end of the scale.
-      const sequence = this.sequences[this.sequenceIndex];
+      const sequence = settings.data().sequences[this.sequenceIndex];
       this.arpeggio.values = sequence.map(i => scale[(i - 1) % scale.length]);
     },
     getInterval(noteVal) {
