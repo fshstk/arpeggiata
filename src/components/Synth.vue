@@ -334,7 +334,6 @@ export default {
       this.updateScaleSequence();
     },
     updateScaleSequence() {
-      console.log(SynthData.scales);
       // (1) Convert all notes to Tone.Frequency() type, so we can do stuff like
       // multiply/divide by 2 to change octave:
       const scale = SynthData.scales[this.scaleIndex].split(",").map(note => Tone.Frequency(note));
