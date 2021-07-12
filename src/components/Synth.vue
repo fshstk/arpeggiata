@@ -241,6 +241,7 @@
                       color="teal"
                     />
                   </q-item-section>
+                  <!--
                   <q-item-section side>
                     <q-btn
                       @click="settingsOpen = true"
@@ -251,6 +252,7 @@
                       size="sm"
                     />
                   </q-item-section>
+                  -->
                 </q-item>
               </q-list>
             </div>
