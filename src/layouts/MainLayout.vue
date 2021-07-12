@@ -34,7 +34,7 @@
         style="text-decoration: none;"
         class="text-white"
         href="https://www.github.com/fshstk"
-        >© 2016 Fabian Hummel</a
+        >© 2021 Fabian Hummel</a
       >
     </q-footer>
   </q-layout>
