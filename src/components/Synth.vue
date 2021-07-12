@@ -287,7 +287,7 @@
 import QVueGlobals from "quasar";
 
 import * as Tone from "tone";
-import { default as settings } from "./Settings.vue";
+import SynthData from "../SynthData";
 
 export default {
   name: "Synth",
@@ -334,16 +334,15 @@ export default {
       this.updateScaleSequence();
     },
     updateScaleSequence() {
+      console.log(SynthData.scales);
       // (1) Convert all notes to Tone.Frequency() type, so we can do stuff like
       // multiply/divide by 2 to change octave:
-      const scale = settings
-        .data()
-        .scales[this.scaleIndex].map(note => Tone.Frequency(note));
+      const scale = SynthData.scales[this.scaleIndex].split(",").map(note => Tone.Frequency(note));
       // (2) Map the sequence to its scale, i.e. we want to play the notes in
       // the selected scale, in the order specified by the selected sequence.
       // The scale is indexed starting at 1 and wraps around the end of the scale.
-      const sequence = settings.data().sequences[this.sequenceIndex];
-      this.arpeggio.values = sequence.map(i => scale[(i - 1) % scale.length]);
+      const sequence = SynthData.sequences[this.sequenceIndex];
+      this.arpeggio.values = sequence.split(",").map(i => scale[(i - 1) % scale.length]);
     },
     getInterval(noteVal) {
       // Given a certain BPM, we want the period taken up by a note event with
